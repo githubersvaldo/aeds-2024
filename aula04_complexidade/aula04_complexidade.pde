@@ -28,7 +28,7 @@ void medir() {
   for (int n = 0; n < nMax; n++) {
     long inicio = millis();
     
-    On(n);
+    fib(n);
     
     long fim = millis(); 
     tempos[n] = (fim - inicio)/1000.0;
@@ -38,14 +38,38 @@ void medir() {
 
 
 void O1(int n) {
-  delay(1000);
+  delay(100);
 }
 
 void Ologn(int n){
   for(int i = n; i >= 1; i /= 2) delay(100);
 }
 
+void Onlogn(int n){
+  for(int k = 0; k < n; k++)
+    for(int i = n; i >= 1; i /= 2) 
+      delay(100);
+}
+
 void On(int n){
   for(int i = 0; i < n; i++) delay(100);
+}
+
+void On2(int n){
+  for(int i = 0; i < n; i++) 
+    for(int j = 0; j < n; j++)
+      delay(1);
+}
+
+void On3(int n){
+  for(int i = 0; i < n; i++) 
+    for(int j = 0; j < n; j++)
+      for(int k = 0; k < n; k++)
+        delay(1);
+}
+
+int fib(int n){
+   if(n < 2) return 1;
+   return fib(n-1)+fib(n-2);
 }
   
