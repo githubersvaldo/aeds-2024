@@ -28,7 +28,7 @@ void draw() {
 }
 
 void ordenar() {   
-  while(true) selectionSort(array);    
+  while(true) mergeSort(array);    
 }
 
 // Bubble Sort
@@ -85,6 +85,9 @@ void insertionSort(int[] arr) {
   // Complexidade de tempo: O(n^2)
 }
 
+void mergeSort(int[] arr){
+  mergeSort(arr, 0, arr.length - 1); 
+}
 // Merge Sort
 void mergeSort(int[] arr, int l, int r) {
   if (l < r) {
