@@ -5,8 +5,8 @@ float zoom = 1; // Variável para controle de zoom
 int dx = 0, dy = 0; // Variáveis para controle de deslocamento
 
 void setup(){
-  size(1000, 800); // Define o tamanho da janela
-  //fullScreen();
+  //size(1000, 800); // Define o tamanho da janela
+  fullScreen();
   background(0); // Define a cor de fundo
   
   // Inicializa os corpos celestes
@@ -52,8 +52,20 @@ void verificaColisao(){
       // Se a distância for menor que a soma dos raios, um dos corpos celestes é desativado
       if(dist < p1.raio + p2.raio)
       {
-        if(p1.massa > p2.massa) p2.ativo = false;
-        else p1.ativo = false;
+        if(p1.massa > p2.massa){
+          p2.ativo = false;
+          
+          
+          //Conservacao do momentum
+          p1.vel = PVector.mult(PVector.add(PVector.mult(p1.vel, p1.massa), PVector.mult(p2.vel, p2.massa)),1/(p1.massa+p2.massa));
+          p1.massa += p2.massa;
+        }
+        else {
+          p1.ativo = false;
+          
+          p2.vel = PVector.mult(PVector.add(PVector.mult(p1.vel, p1.massa), PVector.mult(p2.vel, p2.massa)),1/(p1.massa+p2.massa));
+          p2.massa += p1.massa;
+        }
       }
     }
   }

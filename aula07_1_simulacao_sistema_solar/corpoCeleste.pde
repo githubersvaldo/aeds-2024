@@ -39,10 +39,13 @@ class CorpoCeleste {
   void update(float dt){
     vel = PVector.add(vel, PVector.mult(acel, dt));
     pos = PVector.add(pos, PVector.mult(vel,  dt));
-    rastro.add(pos);
     
-    // Limita o tamanho do rastro a 100 pontos
-    if(rastro.size() > 1000) rastro.remove(0);
+    synchronized(this){
+      rastro.add(pos);
+      
+      // Limita o tamanho do rastro a 100 pontos
+      if(rastro.size() > 1000) rastro.remove(0);
+    }
   }
   
   // Método para exibir o corpo celeste e seu rastro
@@ -50,7 +53,9 @@ class CorpoCeleste {
     if(!ativo) return;
     fill(cor);
     stroke(cor);
-    for(int k = 0; k < rastro.size(); k++) point(rastro.get(k).x, rastro.get(k).y);
+    synchronized(this){
+      for(int k = 0; k < rastro.size(); k++) point(rastro.get(k).x, rastro.get(k).y);
+    }
     stroke(0);
     ellipse(pos.x, pos.y, raio, raio);    
   }
