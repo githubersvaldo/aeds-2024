@@ -6,11 +6,7 @@ class No {
   No(int valor) {
     this.valor = valor;
     esq = null;
-    dir = nul;
-    @Override
-    String toString(){
-      return valor.toString();
-    }
+    dir = null;
   }
 }
 
@@ -59,7 +55,7 @@ class ArvoreBinaria {
           raiz.esq = new No(valor);
         else
           insereRec(raiz.esq, valor);
-        toString
+        
       }else if(valor > raiz.valor){
         if(raiz.dir == null)
           raiz.dir = new No(valor);
@@ -97,14 +93,5 @@ class ArvoreBinaria {
       text(raiz.valor, x, y);
     }
   }
-  private boolean preOrdem(No raiz){
-    if(raiz == null){
-      return false;
-    }else{
-      println(raiz.valor.toString());
-      preOrdem(raiz.esq);
-      preOrdem(raiz.dir);
-      return true;
-    }
-  }
+  
 }
