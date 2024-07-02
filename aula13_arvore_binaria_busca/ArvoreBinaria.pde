@@ -19,7 +19,7 @@ class ArvoreBinaria {
 
   void insere(int valor) {
     raiz = insereRec(raiz, valor);
-  }
+}
 
   private No insereRec(No raiz, int valor) {
     /*
@@ -28,7 +28,6 @@ class ArvoreBinaria {
             raiz ← NOVO NÓ(valor)
             RETORNA raiz
         FIM SE
-    
         SE valor < raiz.valor ENTÃO
             SE raiz.esquerda É nulo ENTÃO
                 raiz.esquerda ← NOVO NÓ(valor)
@@ -47,6 +46,17 @@ class ArvoreBinaria {
     FIM FUNÇÃO
 
     */
+    insereRec(raiz,valor){
+      if(raiz == null){
+        raiz = new No(valor);
+        return raiz;
+      }
+      if(valor < raiz.valor){
+        if(raiz.esqueda == null){
+          raiz.esqueda
+        }
+      }
+    }
     return null;
   }
   
