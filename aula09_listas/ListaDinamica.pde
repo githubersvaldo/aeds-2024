@@ -56,4 +56,6 @@ class ListaDinamica<T> {
     System.arraycopy(elementos, 0, novosElementos, 0, elementos.length);
     elementos = novosElementos;
   }
+  
+
 }
