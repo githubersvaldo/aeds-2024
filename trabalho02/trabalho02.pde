@@ -17,6 +17,8 @@ void draw() {
   map.display();
   fill(255,0,0);
   ellipse(map.screenPosX(x), map.screenPosY(y), 10, 10);
+  
+  
 }
 
 void mouseDragged() {
@@ -56,8 +58,12 @@ void mouseReleased() {
 
 void keyPressed() {
   if (key == 'c' || key == 'C') map.reset();
+  if (key == 'p' || key == 'P') map.reset(x,y);
   if (key == 'w' || key == 'W') y--;
   if (key == 's' || key == 'S') y++;
   if (key == 'a' || key == 'A') x--;
   if (key == 'd' || key == 'D') x++;
+  
+  if(map.screenPosX(x) > 2*width/3 || map.screenPosX(x) < width/3 || map.screenPosY(y) > 2*height/3 || map.screenPosY(y) < height/3) 
+    map.reset(x,y);
 }
