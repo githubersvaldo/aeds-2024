@@ -5,7 +5,7 @@ class Grafo {
   PVector[] posicoes; // Posições das partículas (nós do grafo)
   PVector[] velocidades; // Velocidades das partículas
   float raio = 10; // Raio dos nós
-  float k = 0.01; // Constante da mola para a atração
+  float k = 0.001; // Constante da mola para a atração
   float c = 3000; // Constante de repulsão
   
   // Construtor da classe Grafo
@@ -119,5 +119,42 @@ class Grafo {
       fill(0);
       text(str(i), posicoes[i].x, posicoes[i].y+4);
     }
+  }
+  
+  void dijkstra(int origem, int destino){
+    int[] dist = new int[numVertices];
+    int[] anterior = new int[numVertices];
+    for(int v = 0; v < numVertices; v++){
+      dist[v] = 1000000;
+      anterior[v] = -1;
+    }
+    
+    dist[origem] = 0;
+    int[] Q = new int[numVertices];
+    for(int k = 0; k < numVertices; k++){
+      int u = -1;
+      int udist = 10000000;
+      for(int v = 0; v < numVertices; v++){
+        if(Q[v] == 0 && dist[v] < udist){
+          u = v;
+          udist = dist[v];
+        }
+      }
+        
+      Q[u] = 1;
+        
+      for(int v = 0; v < numVertices; v++){
+          if(u == v || matrizAdj[u][v] == 0) continue;
+           
+            int alt = udist + matrizAdj[u][v];
+            
+            if(alt < dist[v]){
+              dist[v] = alt;
+              anterior[v] = u;
+            }
+        }  
+    }
+    
+    return;
   }
 }

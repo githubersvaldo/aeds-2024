@@ -1,8 +1,8 @@
-class No<T> {
-  T dado;
+class No<X> {
+  X dado;
   No proximo;
 
-  No(T dado) {
+  No(X dado) {
     this.dado = dado;
     this.proximo = null;
   }
@@ -16,12 +16,62 @@ class ListaEncadeada<T> {
     if (cabeca == null) {
       cabeca = novoNo;
     } else {
-      No fim = cabeca;
-      while (fim.proximo != null) {
-        fim = fim.proximo;
+      No atual = cabeca;
+      while (atual.proximo != null) {
+        atual = atual.proximo;
       }
-      fim.proximo = novoNo;
+      atual.proximo = novoNo;
+    }
+  }
+  
+  void add(T dado, int pos){
+    No<T> novoNo = new No<T>(dado);
+    if(cabeca == null) cabeca = novoNo;
+    else{
+      if(pos == 0){
+          novoNo.proximo = cabeca;
+          cabeca = novoNo;      
+      }
+  
+      No atual = cabeca;
+      while(pos > 1 && atual.proximo != null){
+        atual = atual.proximo;
+        pos--;
+      }
+      
+      novoNo.proximo = atual.proximo;
+      atual.proximo = novoNo;
     }
   }
 
+  int count(){
+    if(cabeca == null) return 0;
+    int cnt = 1;
+    No atual = cabeca;
+    while(atual.proximo != null){
+      atual = atual.proximo;
+      cnt++;
+    }
+    
+    return cnt;
+  }
+  
+  T get(int pos){
+    No atual = cabeca;
+    while(pos > 0){ //Cuidado
+      atual = atual.proximo;
+      pos--;
+    }
+    
+    return (T)atual.dado;
+  }
+  
+  void set(int pos, T val){
+    No atual = cabeca;
+    while(pos > 0){ //Cuidado
+      atual = atual.proximo;
+      pos--;
+    }
+    atual.dado = val;
+  }
 }
