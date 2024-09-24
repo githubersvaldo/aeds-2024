@@ -17,18 +17,19 @@ void draw() {
     fill(0);
     textAlign(CENTER);
     text(str(n), n * l, height - h - 10, l, h);
+    //print(str(tempos[n])+",");
     
     if(int(mouseX/l) == n && mouseY > height - h)
       text(str(tempos[n]), width/2, height/2);
   }
-  println(int(mouseX/l));
+  
 }
 
 void medir() {
   for (int n = 0; n < nMax; n++) {
     long inicio = millis();
     
-    fib(n);
+    fib2(n);
     
     long fim = millis(); 
     tempos[n] = (fim - inicio)/1000.0;
@@ -48,7 +49,7 @@ void Ologn(int n){
 void Onlogn(int n){
   for(int k = 0; k < n; k++)
     for(int i = n; i >= 1; i /= 2) 
-      delay(100);
+      delay(10);
 }
 
 void On(int n){
@@ -71,5 +72,19 @@ void On3(int n){
 int fib(int n){
    if(n < 2) return 1;
    return fib(n-1)+fib(n-2);
+}
+
+int fib2(int n){
+   if(n < 2) return 1;
+   
+   int[] f = new int[n];
+   f[0] = 1;
+   f[1] = 1;
+   for(int i = 2; i < n; i++){
+     f[i] = f[i-1]+f[i-2];
+     delay(100);
+   }
+   
+   return f[n-1] + f[n-2];
 }
   
