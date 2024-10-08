@@ -28,7 +28,7 @@ void draw() {
 }
 
 void ordenar() {   
-  while(true) mergeSort(array);    
+  while(true) quickSort(array);    
 }
 
 // Bubble Sort
@@ -94,7 +94,9 @@ void mergeSort(int[] arr, int l, int r) {
     int m = l + (r - l) / 2;
     mergeSort(arr, l, m);
     mergeSort(arr, m + 1, r);
+    delay(100);
     merge(arr, l, m, r);
+    
   }
   // Complexidade de tempo: O(n log n)
 }
