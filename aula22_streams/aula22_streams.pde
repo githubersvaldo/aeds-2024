@@ -26,6 +26,7 @@ void draw() {
     particulas.add(novaParticula);
   }
 
+ particulas = particulas.stream().filter(p -> p.duracaoVida > 0 ).collect(Collectors.toList());
   // Atualiza e exibe todas as particulas usando Streams
   particulas.stream()
             .map(p -> { p.atualizar(); return p; })
